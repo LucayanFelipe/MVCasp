@@ -1,0 +1,47 @@
+﻿@model List<webGerenciaLoja.Models.ProdutoModel>
+
+@{
+    ViewData["Title"] = $"Produtos por categoria";
+}
+
+<h1>Produtos da Categoria: @Model[0].Categoria</h1>
+
+@if (Model.Any())
+{
+    <table class="table table-striped fs-4">
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Em Estoque</th>
+            <th>Data Cadastro</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var produto in Model)
+        {
+            <tr>
+                <td>@produto.Nome</td>
+                <td>@produto.Preco.ToString("C2")</td>
+                <td>@(produto.EmEstoque ? "Sim" : "Não")</td>
+                <td>@produto.DataCadastro.ToString("dd/MM/yyyy")</td>
+                <td>
+                    <a asp-action="Detalhes" asp-route-id="@produto.Id" class="btn btn-info btn-sm fs-4">Detalhes</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+        
+}
+else
+{
+    <div class="alert alert-warning">
+        Nenhum produto encontrado para esta categoria.
+    </div>
+}
+
+<div class="mt-3">
+    <a asp-action="Index" class="btn btn-primary">Ver Todos os Produtos</a>
+</div>

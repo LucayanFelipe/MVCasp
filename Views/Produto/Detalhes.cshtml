@@ -1,0 +1,46 @@
+﻿@model webGerenciaLoja.Models.ProdutoModel
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<div class="text-center fs-4">
+    <h1 class="h1">Detalhes do produto: </h1>
+    <div class="card mt-5">
+        <div class="card-body">
+            <h2 class="card-title">@Model.Nome</h2>
+            <table class="table">
+                <tr>
+                    <th>Id</th>
+                    <th>Preço</th>
+                    <th>Categoria</th>
+                    <th>Em estoque</th>
+                    <th>Data de cadastro</th>
+                </tr>
+                <tr>
+                    <td>@Model.Id</td>
+                    <td>@Model.Preco.ToString("C2")</td>
+                    <td>@Model.Categoria</td>
+                    <td>@Model.EmEstoque</td>
+                    <td>@Model.DataCadastro</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    
+    <div class="mt-5"><a class="btn-link btn-primary"
+            asp-action="Index"
+            >
+        Voltar para produtos
+        </a>
+    </div>
+</div>
+</body>
+</html>

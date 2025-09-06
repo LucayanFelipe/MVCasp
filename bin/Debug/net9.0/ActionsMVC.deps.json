@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "ActionsMVC/1.0.0": {
+        "runtime": {
+          "ActionsMVC.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ActionsMVC/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

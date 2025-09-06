@@ -1,0 +1,69 @@
+﻿@model List<webGerenciaLoja.Models.ProdutoModel>
+
+@{
+    ViewData["Title"] = "Produtos";
+    var categorias = Model.Select(x => x.Categoria).Distinct().OrderBy(c => c).ToList();
+}
+
+<!DOCTYPE html>
+
+<html lang="pt-br">
+<head>
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+
+<div class="mb-1 mt-1 fs-3">
+    <form asp-controller="Produto" asp-action="Categoria" method="get" class="form-inline">
+        <label class="mr-2 fs-3" for="categoria">Filtrar por categoria:</label>
+        <select id="categoria" name="categoria" class="form-control mr-2 fs-2">
+            @foreach (var categoria in categorias)
+            {
+                <option value="@categoria">@categoria</option>
+            }
+        </select>
+        <button type="submit" class="btn btn-primary fs-4 mb-4 mt-4">Filtrar</button>
+        <a asp-controller="Produto" asp-action="Index" class="btn btn-secondary ml-2 fs-4 mb-4 mt-4">Ver Todos</a>
+    </form>
+</div>
+
+
+<div class="fs-4 text-center">
+    <h1 class="h1">Lista de Produtos</h1>
+    <table class="table">
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Categoria</th>
+            <th>Em estoque</th>
+            <th>Ações</th>
+        </tr>
+        @foreach (var prod in @Model)
+        {
+            <tr>
+                <td>@prod.Id</td>
+                <td>@prod.Nome</td>
+                <td>@prod.Preco.ToString("C2")</td>
+                <td>@prod.Categoria</td>
+                <td>@(prod.EmEstoque ? "sim" : "não")</td>
+                <td><a asp-action="Detalhes" asp-route-id="@prod.Id" class="btn-dark">Ver detalhes</a></td>
+            </tr>
+        }
+    </table>
+</div>
+<div class="card">
+    <h2 class="h2">Exportar para CSV</h2>
+    <a asp-action="ExportarCsv" class="btn btn-primary">Exportar</a>
+</div>
+<div class="card">
+    <h2 class="h2">Exportar relatorio TXT</h2>
+    <a asp-action="RelatorioTxt" class="btn btn-primary">Exportar</a>
+</div>
+
+<div class="card">
+    <h2 class="h2">Exportar para JSON</h2>
+    <a asp-action="ExportarJson" class="btn btn-primary">Exportar</a>
+</div>
+</body>
+</html>
